@@ -1,4 +1,5 @@
 import React, { useState, forwardRef, useImperativeHandle, useRef } from 'react'
+import usePropsValue from '../../hooks/usePropsValue'
 import './index.less'
 
 const classPrefix = `py-input`
@@ -51,7 +52,7 @@ export type InputRef = {
 
 const Input = forwardRef<InputRef, InputProps>((p, ref) => {
   const props = Object.assign(defaultProps, p)
-  const [value, setValue] = useState('')
+  const [value, setValue] = usePropsValue(props)
   const [hasFocus, setHasFocus] = useState(false)
   const nativeInputRef = useRef<HTMLInputElement>(null)
 

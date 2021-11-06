@@ -1,27 +1,18 @@
-import React, {FC, useState, useEffect} from 'react';
-import {createPortal} from 'react-dom'
+import React, {FC, useState, useEffect, useCallback} from 'react';
+import Mask from '../Mask';
+import './Toast.less'
 interface IProps {
   content: string;
   visible: boolean;
   onClose?: () => void;
   duration?: number;
 }
-interface IDialog {
-  content: string;
-}
 
-const Dialog: FC<IDialog> = React.memo((props) => {
-  const {content} = props
-  return <h1>{content}</h1>
-})
-
-
-
-const Toast: React.FC<IProps> = ({
+const Toast: FC<IProps> = ({
   visible,
   onClose,
   content,
-  duration = 1000
+  duration = 9000
 }) => {
   const [show, setShow] = useState(visible)
   useEffect(() => {
@@ -33,9 +24,11 @@ const Toast: React.FC<IProps> = ({
       onClose?.()
     }
   }, [])
+  const setHide = useCallback(() => setShow(false), [])
+  return (
+    <Mask visible={show} onMaskClick={ setHide }><div className="Toast-content">{content}</div></Mask>
+  )
+}
 
-
-  return show ? createPortal(<Dialog content={content} />, document.body) : null
-};
 
 export default Toast;

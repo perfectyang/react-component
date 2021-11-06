@@ -7,10 +7,12 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "classnames": "^2.3.1",
     "less": "^4.1.2",
     "lodash": "^4.17.21",
     "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "react-dom": "^17.0.0",
+    "react-spring": "^9.3.0"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",

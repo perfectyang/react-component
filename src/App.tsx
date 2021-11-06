@@ -2,6 +2,7 @@ import React, {useRef} from 'react';
 import Input from './components/Input'
 import Toast from './components/Toast'
 import Button from './components/Button';
+import Son from './demo/Son';
 
 interface IProps {}
 const App: React.FC<IProps> = ({
@@ -28,14 +29,24 @@ const App: React.FC<IProps> = ({
   }
 
   const [loading, setLoading] = React.useState(false)
+  console.log('app-render')
   return (
     <>
-      <Input placeholder="hello" ref={myRef}  clearable />
-      <Button onClick={show2}>Toast2</Button>
-      <Button onClick={show}>Toast</Button>
-      <Button onClick={openLoad} loading={loading} loadingText="loading">
-        btn
-      </Button>
+      <div style={{padding: '10px'}}>
+        <Button size="mini" color="warning" onClick={show2}>Toast2</Button>
+      </div>
+      <div style={{padding: '10px'}}>
+        <Button size="middle" color="primary" onClick={show}>Toast</Button>
+      </div>
+      <div style={{padding: '10px'}}>
+      <Button size="large" color="success" onClick={show2}>Toast2</Button>
+      </div>
+      <div style={{padding: '10px'}}>
+        <Button block color="danger" onClick={openLoad} loading={loading} loadingText="loading">
+          btn
+        </Button>
+        <Son value={'初始化'}  />
+      </div>
     </>
   );
 };
