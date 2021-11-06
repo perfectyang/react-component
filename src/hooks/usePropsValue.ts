@@ -15,7 +15,9 @@ const usePropsValue = <T>(options: IOPtions<T>) => {
   }
   const update = useUpdate()
   const setState = React.useCallback((v: T) => {
+    console.log('value', value)
     if (value === undefined) {
+      console.log('undefined')
       stateRef.current = v
       update()
     }
