@@ -6,6 +6,7 @@ import Switch from '../components/Switch/index';
 import TestSwitch from '../components/TestSwitch';
 import Toast from '../components/Toast'
 import Block from './Block/Block';
+import DemoInfiniteScroll from '../demo/DemoInfiniteScroll'
 
 interface IProps {
   value?: string
@@ -36,9 +37,17 @@ const Son: React.FC<IProps> = (props) => {
 
   const [checked, setChecked] = React.useState(false)
 
+  const [n, setn] = React.useState(0)
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setn(n => n + 1)
+    }, 500)
+  }, [])
+
   return (
     <>
-      <Block>
+      {/* <Block>
         <Button size="mini" color="warning" onClick={show2}>Toast2</Button>
       </Block>
       <Block>
@@ -77,8 +86,18 @@ const Son: React.FC<IProps> = (props) => {
         <TestSwitch checked={checked} onChange={(val) => {
           setChecked(val)
         }} />
-      </Block>
-
+      </Block> */}
+      {n}
+      <button onClick={() => {
+        setn(n => n + 1)
+      }}>addN</button>
+      <DemoInfiniteScroll fn={() => {
+        console.log('aa')
+        setn(n => n+1)
+        setTimeout(() => {
+          setn(n => n+1)
+        }, 600)
+      }} />
     </>
   );
 };
