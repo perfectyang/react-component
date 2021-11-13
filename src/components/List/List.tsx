@@ -16,17 +16,17 @@ const List: React.FC<IList> = (props) => {
     onChange: props.onChange
   })
 
-  function check(val: string) {
+  const check = React.useCallback((val: string) => {
     if (props.multiple) {
       setValue([...value, val])
     } else {
       setValue([val])
     }
-  }
+  }, [props.multiple])
 
-  function uncheck(val: string | string[]) {
+  const uncheck = React.useCallback((val: string | string[]) => {
     setValue(value.filter(item => item !== val))
-  }
+  }, [value])
 
   const data = React.useMemo(() => ({
     value,
