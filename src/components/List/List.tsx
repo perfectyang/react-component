@@ -1,48 +1,56 @@
 import React from 'react';
-import usePropsValue from '../../hooks/usePropsValue';
+
+import usePropsValue from './hooks/usePropsValue';
 import { ListContext } from './Context';
 
-export interface IList {
-  value?: string[]
-  multiple?: boolean
-  onChange?: (val: string[]) => void
-  defaultValue?: any | null
-  disabled?: boolean
+export interface IList<T> {
+  value?: T[];
+  multiple?: boolean;
+  cancelSelect?: boolean;
+  onChange?: (val: T[]) => void;
+  defaultValue?: any | null;
+  // disabled?: boolean;
+  children?: React.ReactNode;
 }
-const List: React.FC<IList> = (props) => {
-  const [value, setValue] = usePropsValue<string[]>({
+function List<T>(props: IList<T>) {
+  const [value, setValue] = usePropsValue<T[]>({
     value: props.value,
     defaultValue: props.defaultValue ?? null,
-    onChange: props.onChange
-  })
+    onChange: props.onChange,
+  });
 
-  const check = React.useCallback((val: string) => {
-    if (props.multiple) {
-      setValue([...value, val])
-    } else {
-      setValue([val])
-    }
-  }, [props.multiple])
+  const check = React.useCallback(
+    (val: T) => {
+      if (props.multiple) {
+        setValue([...value, val]);
+      } else {
+        setValue([val]);
+      }
+    },
+    [value, props.multiple]
+  );
+  const uncheck = React.useCallback(
+    (val: T) => {
+      setValue(value.filter((item) => item !== val));
+    },
+    [value]
+  );
 
-  const uncheck = React.useCallback((val: string | string[]) => {
-    setValue(value.filter(item => item !== val))
-  }, [value])
-
-  const data = React.useMemo(() => ({
-    value,
-    check,
-    uncheck,
-    disabled: props.disabled ?? false,
-    multiple: props.multiple ?? false,
-  }), [value, props.multiple, props.disabled])
+  const data = React.useMemo(
+    () => ({
+      value,
+      check,
+      uncheck,
+      // disabled: props.disabled ?? false,
+      multiple: props.multiple ?? false,
+      cancelSelect: props.cancelSelect ?? false,
+    }),
+    [value, check, uncheck, props.multiple]
+  );
 
   return (
-    <ListContext.Provider
-      value={data}
-    >
-      {props.children}
-    </ListContext.Provider>
+    <ListContext.Provider value={data}>{props.children}</ListContext.Provider>
   );
 }
 
-export default List
+export default List;

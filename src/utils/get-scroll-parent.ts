@@ -1,5 +1,4 @@
 
-
 function isElement (node: Element) {
   const ELEMENTTYPE = 1
   return (
