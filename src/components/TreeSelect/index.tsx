@@ -1,4 +1,5 @@
 import React from "react";
+import { getTreeDeep } from "../../utils/getTreeDep";
 import "./index.less";
 
 interface ITree {
@@ -11,26 +12,12 @@ interface IProps {
   options: ITree[];
   values: string[];
 }
-function getTreeDeep(tree: ITree[]) {
-  const walker = (node) => {
-    let deep = 0;
-    node.forEach((tree) => {
-      if (tree.children) {
-        deep = Math.max(deep, walker(tree.children) + 1);
-      } else {
-        deep = Math.max(deep, 1);
-      }
-    });
-    return deep;
-  };
-  return walker(tree);
-}
 
 const Index: React.FC<IProps> = ({ options, values }) => {
   const [selectValues, setSelectValues] = React.useState(values);
 
   const [deep, optionsParentMap, optionsMap] = React.useMemo(() => {
-    const deep = getTreeDeep(options);
+    const deep = getTreeDeep<ITree>(options);
     const optionsParentMap = new Map<string, ITree>();
     const optionsMap = new Map<string, ITree>();
     function traverse(options, current) {
@@ -65,7 +52,7 @@ const Index: React.FC<IProps> = ({ options, values }) => {
         <div
           key={idx}
           className={isActive ? "active" : ""}
-          onClick={() => selectItem(option)}
+          onClick={() => !isActive && selectItem(option)}
         >
           {option.label}
         </div>
