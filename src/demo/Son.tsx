@@ -1,7 +1,8 @@
 import React from "react";
 import Button from "../components/Button";
 import Dialog from "../components/Dialog/index";
-import TreeSelect from "../components/TreeSelect/index";
+// import TreeSelect from "../components/TreeSelect/index";
+import TreeSelect from "../components/TreeSelect/Multiple";
 import Input from "../components/Input";
 import Switch from "../components/Switch/index";
 import TestSwitch from "../components/TestSwitch";
@@ -236,6 +237,7 @@ const Son: React.FC<IProps> = (props) => {
           setn(n => n+1)
         }, 600)
       }} /> */}
+      {/* <TreeSelect values={[]} options={options} /> */}
       <TreeSelect values={[]} options={options} />
     </>
   );

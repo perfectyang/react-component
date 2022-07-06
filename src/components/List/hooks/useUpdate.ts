@@ -1,12 +1,9 @@
-import React from 'react'
+import React from "react";
 
 const useUpdate = () => {
-  const [, setState] = React.useState({})
-  return React.useCallback(
-    () => {
-      setState({})
-    },
-    [],
-  )
-}
-export default useUpdate 
+  const [_, forceUpdate] = React.useReducer((x) => x + 1, 0);
+  return React.useCallback(() => {
+    forceUpdate();
+  }, []);
+};
+export default useUpdate;

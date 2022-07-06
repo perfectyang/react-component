@@ -6,6 +6,7 @@ export function getTreeDeep<T>(tree: T[]) {
         deep = Math.max(deep, walker(tree.children) + 1);
       } else {
         deep = Math.max(deep, 1);
+        tree.isLastLeft = true;
       }
     });
     return deep;
