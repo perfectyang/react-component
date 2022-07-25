@@ -1,7 +1,8 @@
-import React from 'react';
+import React from "react";
+import usePropsValue from "../../hooks/usePropsValue";
 
-import usePropsValue from './hooks/usePropsValue';
-import { ListContext } from './Context';
+// import usePropsValue from './hooks/usePropsValue';
+import { ListContext } from "./Context";
 
 export interface IList<T> {
   value?: T[];
