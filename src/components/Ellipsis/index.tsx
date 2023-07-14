@@ -1,4 +1,4 @@
-import { ts } from "@/language/translate";
+// import { ts } from "@/language/translate";
 import { Button, Tag } from "@arco-design/web-react";
 import React, {
   useCallback,
@@ -151,7 +151,7 @@ const Ellipsis: React.FC<IProps> = ({ tags, checked, onChecked, row = 1 }) => {
                   setExpanded(bool);
                 }}
               >
-                {!expanded ? ts("展开") : ts("收起")}
+                {!expanded ? "展开" : "收起"}
               </Button>
             )}
           </div>
