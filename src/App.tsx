@@ -3,7 +3,8 @@ import React from "react";
 // import TestControll from "./demo/TestControll";
 // import TestControll from "./demo/TableDemo";
 // import EllipsisText from "./components/EllipsisText";
-import EllipsisLabel from "./components/EllipsisLabel";
+// import EllipsisLabel from "./components/EllipsisLabel";
+import DraggableDemo from "./components/Draggable/Demo";
 
 interface IProps {}
 const App: React.FC<IProps> = ({}) => {
@@ -14,7 +15,7 @@ const App: React.FC<IProps> = ({}) => {
         {/* <div style={{ width: "90px", border: "1px solid red" }}> */}
         {/*   {/* <EllipsisText text="我是一个测试文本" buttonText="out" /> */}
         {/* </div> */}
-        <EllipsisLabel />
+        <DraggableDemo />
       </div>
     </>
   );
