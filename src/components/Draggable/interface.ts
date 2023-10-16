@@ -21,7 +21,9 @@ export interface DraggableItemProps extends Pick<DraggableProps, "direction"> {
 export interface DraggableProps {
   children?: ReactNode;
   direction?: "horizontal" | "vertical";
+  type?: "sort" | "exchange"; // 排序或交互位置
   className?: string | string[];
   itemWrapperStyle?: CSSProperties;
-  onIndexChange?: (index: number, prevIndex: number) => void;
+  onChange: (value: any[], index: number, prevIndex: number) => void;
+  value: any[];
 }
