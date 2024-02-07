@@ -1,0 +1,55 @@
+.container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.materialCard {
+	flex-shrink: 0;
+	width: 80px;
+	height: 80px;
+	margin-right: 8px;
+	margin-bottom: 8px;
+	color: var(--color-text-2);
+	background: var(--color-fill-2);
+	border-radius: var(--border-radius-small);
+	border: 1px dashed var(--color-neutral-3);
+	position: relative;
+	overflow: hidden;
+}
+
+.img {
+	// width: 100%;
+	width: 80px;
+	height: 80px;
+	object-fit: contain;
+}
+.title {
+	width: 80px;
+	overflow: hidden;
+}
+
+.mask {
+	position: absolute;
+	width: 80px;
+	height: 80px;
+	top: 0;
+	left: 0;
+	text-align: center;
+	line-height: 80px;
+	transition: all 0.1s cubic-bezier(0, 0, 1, 1);
+	background-color: rgba(0, 0, 0, 0.5);
+	opacity: 0;
+}
+.pause {
+	position: absolute;
+	left: 50%;
+	color: #000;
+	transform: translateX(-50%);
+	font-size: 30px;
+}
+
+.mask:hover {
+	cursor: pointer;
+	opacity: 1;
+}
